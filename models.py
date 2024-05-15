@@ -20,7 +20,7 @@ class Role(db.Model):
         return '<Role %r>' % self.name
 
 # Define a User model with additional fields
-class User(db.Model):
+class User(UserMixin,db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
