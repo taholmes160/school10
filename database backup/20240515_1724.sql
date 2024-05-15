@@ -1,0 +1,596 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: mariadb:3306
+-- Generation Time: May 15, 2024 at 09:24 PM
+-- Server version: 11.2.2-MariaDB-1:11.2.2+maria~ubu2204
+-- PHP Version: 8.2.14
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `school10`
+--
+CREATE DATABASE IF NOT EXISTS `school10` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `school10`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alembic_version`
+--
+
+CREATE TABLE `alembic_version` (
+  `version_num` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `alembic_version`
+--
+
+INSERT INTO `alembic_version` (`version_num`) VALUES
+('10d6a1e6a3a6');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `description`) VALUES
+(1, 'Principal', NULL),
+(3, 'Vice Principal', NULL),
+(4, 'Counselor', NULL),
+(5, 'Librarian', NULL),
+(6, 'IT Support', NULL),
+(7, 'Finance Officer', NULL),
+(8, 'Attendance Officer', NULL),
+(9, 'Office Staff', NULL),
+(10, 'Food Service', NULL),
+(11, 'Health Staff', NULL),
+(12, 'Department Head', NULL),
+(13, 'Coach', NULL),
+(14, 'Substitute Teacher', NULL),
+(15, 'Volunteer', NULL),
+(16, 'Board Member', NULL),
+(17, 'Alumni', NULL),
+(18, 'Teacher', NULL),
+(19, 'Student', NULL),
+(20, 'Parent', NULL),
+(21, 'Facilities', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(80) NOT NULL,
+  `email` varchar(120) NOT NULL,
+  `password_hash` varchar(128) DEFAULT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT NULL,
+  `is_verified` tinyint(1) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `profile_picture` varchar(255) DEFAULT NULL,
+  `bio` text DEFAULT NULL,
+  `phone_number` varchar(15) DEFAULT NULL,
+  `last_login_at` datetime DEFAULT NULL,
+  `login_attempts` int(11) DEFAULT NULL,
+  `password_reset_token` varchar(100) DEFAULT NULL,
+  `password_reset_expiration` datetime DEFAULT NULL,
+  `language` varchar(10) DEFAULT NULL,
+  `timezone` varchar(50) DEFAULT NULL,
+  `is_admin` tinyint(1) DEFAULT NULL,
+  `deactivated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password_hash`, `role_id`, `is_active`, `is_verified`, `created_at`, `updated_at`, `first_name`, `last_name`, `profile_picture`, `bio`, `phone_number`, `last_login_at`, `login_attempts`, `password_reset_token`, `password_reset_expiration`, `language`, `timezone`, `is_admin`, `deactivated_at`) VALUES
+(2024001, 'stu2024001', 'stu2024001@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jeremy', 'Stitch', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024002, 'stu2024002', 'stu2024002@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Quinton', 'Kocher', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024003, 'stu2024003', 'stu2024003@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Lander', 'Busse', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024004, 'stu2024004', 'stu2024004@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Badge', 'Busse', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024005, 'stu2024005', 'stu2024005@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Daniel', 'Beresky', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024006, 'stu2024006', 'stu2024006@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Beresky', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024007, 'stu2024007', 'stu2024007@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Derek', 'Beresky', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024008, 'stu2024008', 'stu2024008@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ron', 'Allen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024009, 'stu2024009', 'stu2024009@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'William', 'Arthur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024010, 'stu2024010', 'stu2024010@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jeff', 'Bania', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024011, 'stu2024011', 'stu2024011@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Thomas', 'Brown', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024012, 'stu2024012', 'stu2024012@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jeff', 'Clay', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024013, 'stu2024013', 'stu2024013@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Greg', 'Hochstetler', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024014, 'stu2024014', 'stu2024014@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tim', 'Johnson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024015, 'stu2024015', 'stu2024015@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Eric', 'Johnson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024016, 'stu2024016', 'stu2024016@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jerry', 'King', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024017, 'stu2024017', 'stu2024017@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'James', 'Lambright', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024018, 'stu2024018', 'stu2024018@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Heath', 'Lambright', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024019, 'stu2024019', 'stu2024019@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Rod', 'Linville', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024020, 'stu2024020', 'stu2024020@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brent', 'Lowe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024021, 'stu2024021', 'stu2024021@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Rex', 'Lowe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024022, 'stu2024022', 'stu2024022@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brian', 'Miller', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024023, 'stu2024023', 'stu2024023@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Frank', 'Oren', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024024, 'stu2024024', 'stu2024024@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Matthew', 'Patsch', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024025, 'stu2024025', 'stu2024025@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Chris', 'Ricker', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024026, 'stu2024026', 'stu2024026@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Alan', 'Ripper', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024027, 'stu2024027', 'stu2024027@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Adam', 'Ripper', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024028, 'stu2024028', 'stu2024028@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tim', 'Scheutzow', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024029, 'stu2024029', 'stu2024029@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jim', 'Surratt', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024030, 'stu2024030', 'stu2024030@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'George', 'Vermilyea', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024031, 'stu2024031', 'stu2024031@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Michael', 'Winter', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024032, 'stu2024032', 'stu2024032@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Winter', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024033, 'stu2024033', 'stu2024033@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Bill', 'Bixby', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024034, 'stu2024034', 'stu2024034@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Justin', 'Brenenstuhl', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024035, 'stu2024035', 'stu2024035@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Bruce', 'Collier', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024036, 'stu2024036', 'stu2024036@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Matthew', 'Hoert', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024037, 'stu2024037', 'stu2024037@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Chad', 'Hoert', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024038, 'stu2024038', 'stu2024038@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Joshua', 'Hoert', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024039, 'stu2024039', 'stu2024039@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Zach', 'Misenko', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024040, 'stu2024040', 'stu2024040@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Adam', 'Misenko', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024041, 'stu2024041', 'stu2024041@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Seth', 'Misenko', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024042, 'stu2024042', 'stu2024042@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Rob', 'Cook', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024043, 'stu2024043', 'stu2024043@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Shawn', 'Gebbie', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024044, 'stu2024044', 'stu2024044@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Christopher', 'Conwill', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024045, 'stu2024045', 'stu2024045@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Conwill', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024046, 'stu2024046', 'stu2024046@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Gillespie', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024047, 'stu2024047', 'stu2024047@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'John Mark', 'Hershberger', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024048, 'stu2024048', 'stu2024048@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Kurt', 'Kramer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024049, 'stu2024049', 'stu2024049@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Kenton', 'Kramer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024050, 'stu2024050', 'stu2024050@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tommy', 'Lamborn', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024051, 'stu2024051', 'stu2024051@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Lamborn', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024052, 'stu2024052', 'stu2024052@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Michael', 'Leach', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024053, 'stu2024053', 'stu2024053@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jonathan', 'Sommer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024054, 'stu2024054', 'stu2024054@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Timothy', 'McQuerry', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024055, 'stu2024055', 'stu2024055@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Todd', 'Meridith', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024056, 'stu2024056', 'stu2024056@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Sean', 'Miller', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024057, 'stu2024057', 'stu2024057@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Reed', 'Monegan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024058, 'stu2024058', 'stu2024058@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Steve', 'Nowack', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024059, 'stu2024059', 'stu2024059@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Matthew', 'Oates', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024060, 'stu2024060', 'stu2024060@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Kevin', 'Payne', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024061, 'stu2024061', 'stu2024061@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Rick', 'Powers', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024062, 'stu2024062', 'stu2024062@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Joshua', 'Powers', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024063, 'stu2024063', 'stu2024063@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ryan', 'Roberts', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024064, 'stu2024064', 'stu2024064@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Darin', 'Rosenvold', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024065, 'stu2024065', 'stu2024065@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jeff', 'Roth', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024066, 'stu2024066', 'stu2024066@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jonathan', 'Roth', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024067, 'stu2024067', 'stu2024067@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'John', 'Sebestyen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024068, 'stu2024068', 'stu2024068@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Snyder', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024069, 'stu2024069', 'stu2024069@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Timothy', 'Work', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024070, 'stu2024070', 'stu2024070@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Andrew', 'Male', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024071, 'stu2024071', 'stu2024071@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'William', 'Surgeon', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024072, 'stu2024072', 'stu2024072@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ben', 'toot', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024073, 'stu2024073', 'stu2024073@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Michael', 'Smith', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024074, 'stu2024074', 'stu2024074@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Robert', 'Ward', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024075, 'stu2024075', 'stu2024075@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Bob', 'Weinerheimer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024076, 'stu2024076', 'stu2024076@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jeff', 'Williams', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024077, 'stu2024077', 'stu2024077@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Bo', 'Wilson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024078, 'stu2024078', 'stu2024078@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Bill', 'Wilson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024079, 'stu2024079', 'stu2024079@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brian', 'Wolf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024080, 'stu2024080', 'stu2024080@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jay', 'Hardback', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024081, 'stu2024081', 'stu2024081@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Joe', 'Phillips', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024082, 'stu2024082', 'stu2024082@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Linden', 'Phillips', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024083, 'stu2024083', 'stu2024083@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tom', 'Smith', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024084, 'stu2024084', 'stu2024084@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Thomas', 'Ellison', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024085, 'stu2024085', 'stu2024085@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ben', 'Legg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024086, 'stu2024086', 'stu2024086@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Marty', 'Walker', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024087, 'stu2024087', 'stu2024087@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Bobby', 'Scandlon', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024088, 'stu2024088', 'stu2024088@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Patrick', 'Scandlon', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024089, 'stu2024089', 'stu2024089@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Willard', 'Scandlon', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024090, 'stu2024090', 'stu2024090@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Austin', 'Scandlon', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024091, 'stu2024091', 'stu2024091@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jimmy', 'Myers', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024092, 'stu2024092', 'stu2024092@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tony', 'Dulgar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024093, 'stu2024093', 'stu2024093@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Clifford', 'Phillips', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024094, 'stu2024094', 'stu2024094@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Scott', 'Phillips', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024095, 'stu2024095', 'stu2024095@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Rodge', 'Campbel', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024096, 'stu2024096', 'stu2024096@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Matthew', 'Perkins', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024097, 'stu2024097', 'stu2024097@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Leroy', 'Meadows', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024098, 'stu2024098', 'stu2024098@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'John', 'Mullins', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024099, 'stu2024099', 'stu2024099@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Clifford', 'Roop', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024100, 'stu2024100', 'stu2024100@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Timothy', 'Roop', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024101, 'stu2024101', 'stu2024101@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Kim', 'Roose', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024102, 'stu2024102', 'stu2024102@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Michael', 'Tanner', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024103, 'stu2024103', 'stu2024103@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Michael', 'Vanek', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024104, 'stu2024104', 'stu2024104@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Paul', 'Brentlinger', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024105, 'stu2024105', 'stu2024105@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Paul', 'DeHart', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024106, 'stu2024106', 'stu2024106@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Nate', 'DeHart', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024107, 'stu2024107', 'stu2024107@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Nate', 'Wolf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024108, 'stu2024108', 'stu2024108@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Grant', 'Steyer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024109, 'stu2024109', 'stu2024109@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Todd', 'Steyer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024110, 'stu2024110', 'stu2024110@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Teddy', 'Guyulas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024111, 'stu2024111', 'stu2024111@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tommy', 'Guyulas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024112, 'stu2024112', 'stu2024112@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Wyatt', 'Cravatas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024113, 'stu2024113', 'stu2024113@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Michael', 'Deuring', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024114, 'stu2024114', 'stu2024114@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Aaron', 'Hicks', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024115, 'stu2024115', 'stu2024115@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Doug', 'Dougherty', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024116, 'stu2024116', 'stu2024116@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Matthew', 'Honaker', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024117, 'stu2024117', 'stu2024117@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Andrew', 'Konya', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024118, 'stu2024118', 'stu2024118@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Fred', 'Leach', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024119, 'stu2024119', 'stu2024119@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Cole', 'Morgan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024120, 'stu2024120', 'stu2024120@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Keeler', 'North', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024121, 'stu2024121', 'stu2024121@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jason', 'Routzon', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024122, 'stu2024122', 'stu2024122@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jim', 'Shimer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024123, 'stu2024123', 'stu2024123@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Kevin', 'Tinter', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024124, 'stu2024124', 'stu2024124@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Daniel', 'Tousley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024125, 'stu2024125', 'stu2024125@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Paul', 'Tousley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024126, 'stu2024126', 'stu2024126@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Adam', 'Whitney', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024127, 'stu2024127', 'stu2024127@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Seth', 'Whitney', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024128, 'stu2024128', 'stu2024128@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Wesley', 'Loudermilk', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024129, 'stu2024129', 'stu2024129@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Wesley', 'Ziegler', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024130, 'stu2024130', 'stu2024130@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Charles', 'Ziegler', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024131, 'stu2024131', 'stu2024131@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Mullins', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024132, 'stu2024132', 'stu2024132@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Scott', 'Severence', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024133, 'stu2024133', 'stu2024133@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jason', 'Stephens', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024134, 'stu2024134', 'stu2024134@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brad', 'Seivers', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024135, 'stu2024135', 'stu2024135@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Zach', 'Oswold', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024136, 'stu2024136', 'stu2024136@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Wes', 'Boggs', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024137, 'stu2024137', 'stu2024137@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Matthew', 'Strang', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024138, 'stu2024138', 'stu2024138@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Meisner', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024139, 'stu2024139', 'stu2024139@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Wyatt', 'Henderson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024140, 'stu2024140', 'stu2024140@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Adam', 'Wonus', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024141, 'stu2024141', 'stu2024141@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Matthew', 'McCleese', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024142, 'stu2024142', 'stu2024142@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Cameron', 'Vogle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024143, 'stu2024143', 'stu2024143@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Bodie', 'Hillwig', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024144, 'stu2024144', 'stu2024144@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Kevin', 'Pesheck', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024145, 'stu2024145', 'stu2024145@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ian', 'Pesheck', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024146, 'stu2024146', 'stu2024146@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Christian', 'Pesheck', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024147, 'stu2024147', 'stu2024147@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Andy', 'Zywick', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024148, 'stu2024148', 'stu2024148@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'John', 'Zywick', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024149, 'stu2024149', 'stu2024149@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Brown', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024150, 'stu2024150', 'stu2024150@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Andrew', 'Stefan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024151, 'stu2024151', 'stu2024151@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Matthew', 'Stefan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024152, 'stu2024152', 'stu2024152@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Christopher', 'Brown', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024153, 'stu2024153', 'stu2024153@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ben', 'Olsen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024154, 'stu2024154', 'stu2024154@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Bryce', 'Sedio', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024155, 'stu2024155', 'stu2024155@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jared', 'Wills', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024156, 'stu2024156', 'stu2024156@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Nick', 'WIlls', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024157, 'stu2024157', 'stu2024157@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Casey', 'O\'Brian', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024158, 'stu2024158', 'stu2024158@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Shawn', 'O\'Brian', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024159, 'stu2024159', 'stu2024159@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jason', 'Linden', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024160, 'stu2024160', 'stu2024160@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Perry', 'Cohen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024161, 'stu2024161', 'stu2024161@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Austin', 'Stephanos', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024162, 'stu2024162', 'stu2024162@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Steven', 'Roque', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024163, 'stu2024163', 'stu2024163@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Nathan', 'Roque', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024164, 'stu2024164', 'stu2024164@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Geoffry', 'Martel', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024165, 'stu2024165', 'stu2024165@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Gregory', 'Martel', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024166, 'stu2024166', 'stu2024166@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Grant', 'Martel', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024167, 'stu2024167', 'stu2024167@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Eric', 'Clinton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024168, 'stu2024168', 'stu2024168@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'J\'mark', 'Boliver', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024169, 'stu2024169', 'stu2024169@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'J\'Herne', 'Boliver', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024170, 'stu2024170', 'stu2024170@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Mark', 'Zurowski', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024171, 'stu2024171', 'stu2024171@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Matthew', 'Zurowski', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024172, 'stu2024172', 'stu2024172@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Michael', 'Zurowski', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024173, 'stu2024173', 'stu2024173@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Duncan', 'McCord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024174, 'stu2024174', 'stu2024174@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Malcom', 'McCord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024175, 'stu2024175', 'stu2024175@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Angus', 'McCord', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024176, 'stu2024176', 'stu2024176@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Clay', 'Parris', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024177, 'stu2024177', 'stu2024177@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Kendall', 'Virginia', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024178, 'stu2024178', 'stu2024178@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Mathias', 'Uribe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024179, 'stu2024179', 'stu2024179@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Nicholas', 'Uribe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024180, 'stu2024180', 'stu2024180@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Michael', 'Stolzenberg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024181, 'stu2024181', 'stu2024181@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Harris', 'Stolzenberg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024182, 'stu2024182', 'stu2024182@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Philip', 'Mashki', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024183, 'stu2024183', 'stu2024183@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Philip', 'Mahi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024184, 'stu2024184', 'stu2024184@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Florian', 'France', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024185, 'stu2024185', 'stu2024185@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Julian', 'France', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024186, 'stu2024186', 'stu2024186@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Donny', 'harmison', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024187, 'stu2024187', 'stu2024187@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Donny', 'MPMS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024188, 'stu2024188', 'stu2024188@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Chris', 'Keope', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024189, 'stu2024189', 'stu2024189@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jake', 'Carner', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024190, 'stu2024190', 'stu2024190@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jake', 'Jurowski', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024191, 'stu2024191', 'stu2024191@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Robbie', 'MPMS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024192, 'stu2024192', 'stu2024192@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Phillip', 'Green', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024193, 'stu2024193', 'stu2024193@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Shawn', 'Green', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024194, 'stu2024194', 'stu2024194@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'shawn', 'gray', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024195, 'stu2024195', 'stu2024195@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brandon', 'Knight', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024196, 'stu2024196', 'stu2024196@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Phillip', 'Wilsie', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024197, 'stu2024197', 'stu2024197@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Caleb', 'Hollo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024198, 'stu2024198', 'stu2024198@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jared', 'Grey', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024199, 'stu2024199', 'stu2024199@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Redmond', 'Gerard', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024200, 'stu2024200', 'stu2024200@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tom', 'Holland', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024201, 'stu2024201', 'stu2024201@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Lucas', 'Judy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024202, 'stu2024202', 'stu2024202@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Lucas', 'Benentt', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024203, 'stu2024203', 'stu2024203@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jared', 'Enting', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024204, 'stu2024204', 'stu2024204@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jared', 'MPMS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024205, 'stu2024205', 'stu2024205@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Frank', 'Panstingal', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024206, 'stu2024206', 'stu2024206@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Adrian', 'Wilson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024207, 'stu2024207', 'stu2024207@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Cory', 'Saddler', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024208, 'stu2024208', 'stu2024208@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Nick', 'Markley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024209, 'stu2024209', 'stu2024209@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Telo ', 'Grove', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024210, 'stu2024210', 'stu2024210@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Danny', 'Bevan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024211, 'stu2024211', 'stu2024211@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Josh', 'Green', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024212, 'stu2024212', 'stu2024212@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Garett', 'Stewart', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024213, 'stu2024213', 'stu2024213@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Mark', 'Bazemore', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024214, 'stu2024214', 'stu2024214@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'John', 'McVicker', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024215, 'stu2024215', 'stu2024215@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Frank', 'DeCapio', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024216, 'stu2024216', 'stu2024216@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Mark', 'Sunde', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024217, 'stu2024217', 'stu2024217@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jeremy', 'Morningstar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024218, 'stu2024218', 'stu2024218@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jordan', 'Zolman', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024219, 'stu2024219', 'stu2024219@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Mason', 'Cooley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024220, 'stu2024220', 'stu2024220@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Connor', 'masonfriend', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024221, 'stu2024221', 'stu2024221@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Greg', 'Kinitis', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024222, 'stu2024222', 'stu2024222@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Adam', 'Johnson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024223, 'stu2024223', 'stu2024223@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Justin', 'Bonheim', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024224, 'stu2024224', 'stu2024224@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Blake', 'Bonheim', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024225, 'stu2024225', 'stu2024225@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Andrew', 'Sherer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024226, 'stu2024226', 'stu2024226@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Mark', 'Zuiderveen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024227, 'stu2024227', 'stu2024227@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jim', 'Ringer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024228, 'stu2024228', 'stu2024228@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jason', 'Mascari', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024229, 'stu2024229', 'stu2024229@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'brent', 'Davis', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024230, 'stu2024230', 'stu2024230@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Danny', 'Kyper', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024231, 'stu2024231', 'stu2024231@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Danny', 'Webster', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024232, 'stu2024232', 'stu2024232@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'clay', 'Febus', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024233, 'stu2024233', 'stu2024233@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brian', 'clayfriend', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024234, 'stu2024234', 'stu2024234@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Farley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024235, 'stu2024235', 'stu2024235@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tyler', 'Andrew', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024236, 'stu2024236', 'stu2024236@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brian', 'Vickers', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024237, 'stu2024237', 'stu2024237@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Anthony', 'PIasano', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024238, 'stu2024238', 'stu2024238@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Zach', 'Arnold', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024239, 'stu2024239', 'stu2024239@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brandon', 'Kaskey', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024240, 'stu2024240', 'stu2024240@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jimmy', 'Kaskey', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024241, 'stu2024241', 'stu2024241@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jimmy', 'Guess', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024242, 'stu2024242', 'stu2024242@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Eric', 'Guillentine', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024243, 'stu2024243', 'stu2024243@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Joshua', 'Mullins', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024244, 'stu2024244', 'stu2024244@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Nathan', 'Cunningham', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024245, 'stu2024245', 'stu2024245@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Seth', 'Cunningham', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024246, 'stu2024246', 'stu2024246@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Benny', 'Cunningham', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024247, 'stu2024247', 'stu2024247@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Alexi', 'Ivanovich', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024248, 'stu2024248', 'stu2024248@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ivan', 'Demitrovich', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024249, 'stu2024249', 'stu2024249@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Dale', 'Berskin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024250, 'stu2024250', 'stu2024250@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Matt', 'Carper', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024251, 'stu2024251', 'stu2024251@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jack', 'Carper', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024252, 'stu2024252', 'stu2024252@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Austin', 'Oh', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024253, 'stu2024253', 'stu2024253@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ryan', 'Hornack', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024254, 'stu2024254', 'stu2024254@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Shawn', 'Baisden', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024255, 'stu2024255', 'stu2024255@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jimmy', 'Meyers', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024256, 'stu2024256', 'stu2024256@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jimmy', 'Murphy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024257, 'stu2024257', 'stu2024257@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brad', 'Brock', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024258, 'stu2024258', 'stu2024258@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Randy', 'Richner', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024259, 'stu2024259', 'stu2024259@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Andrew', 'Witzak', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024260, 'stu2024260', 'stu2024260@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Kyle', 'Bruffy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024261, 'stu2024261', 'stu2024261@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Alex', 'dakota', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024262, 'stu2024262', 'stu2024262@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Danny', 'Dakota', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024263, 'stu2024263', 'stu2024263@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Calif', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024264, 'stu2024264', 'stu2024264@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jeremy', 'playfirstbase', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024265, 'stu2024265', 'stu2024265@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Jamison', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024266, 'stu2024266', 'stu2024266@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Barry', 'Horvath', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024267, 'stu2024267', 'stu2024267@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Marc', 'Berry', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024268, 'stu2024268', 'stu2024268@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Marc', 'Calif', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024269, 'stu2024269', 'stu2024269@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Troy', 'Berry', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024270, 'stu2024270', 'stu2024270@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Kyle', 'Chippewa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024271, 'stu2024271', 'stu2024271@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Matthew', 'Lacrosse', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024272, 'stu2024272', 'stu2024272@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Derwin', 'Loverink', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024273, 'stu2024273', 'stu2024273@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Peter', 'Loverink', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024274, 'stu2024274', 'stu2024274@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Aiden', 'Loverink', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024275, 'stu2024275', 'stu2024275@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Gordy', 'Sanders', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024276, 'stu2024276', 'stu2024276@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Nico', 'White', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024277, 'stu2024277', 'stu2024277@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tommy', 'Brady', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024278, 'stu2024278', 'stu2024278@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Aaron', 'Green', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024279, 'stu2024279', 'stu2024279@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Mike', 'Long', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024280, 'stu2024280', 'stu2024280@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Mike', 'Cole', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024281, 'stu2024281', 'stu2024281@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jordan', 'Grills', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024282, 'stu2024282', 'stu2024282@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Johnny', 'McDougal', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024283, 'stu2024283', 'stu2024283@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Steve', 'Brown', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024284, 'stu2024284', 'stu2024284@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Greg', 'Streme', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024285, 'stu2024285', 'stu2024285@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Abdul', 'Gassed', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024286, 'stu2024286', 'stu2024286@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Greg ', 'Cornelius', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024287, 'stu2024287', 'stu2024287@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Bobby', 'Pembridge', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024288, 'stu2024288', 'stu2024288@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tim', 'Miskimen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024289, 'stu2024289', 'stu2024289@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ryan', 'O\'Callaghan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024290, 'stu2024290', 'stu2024290@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Eric', 'O\'Callaghan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024291, 'stu2024291', 'stu2024291@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Codi', 'Schmidt-McPhee', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024292, 'stu2024292', 'stu2024292@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ty', 'Sheridin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024293, 'stu2024293', 'stu2024293@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jacob seth', 'Loughland', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024294, 'stu2024294', 'stu2024294@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Seth', 'Clearwater', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024295, 'stu2024295', 'stu2024295@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Thomas', 'Brodi-Sanger', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `username`, `email`, `password_hash`, `role_id`, `is_active`, `is_verified`, `created_at`, `updated_at`, `first_name`, `last_name`, `profile_picture`, `bio`, `phone_number`, `last_login_at`, `login_attempts`, `password_reset_token`, `password_reset_expiration`, `language`, `timezone`, `is_admin`, `deactivated_at`) VALUES
+(2024296, 'stu2024296', 'stu2024296@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Mickey', 'Matson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024297, 'stu2024297', 'stu2024297@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brett', 'Portage', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024298, 'stu2024298', 'stu2024298@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brett', 'Nau', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024299, 'stu2024299', 'stu2024299@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Wright', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024300, 'stu2024300', 'stu2024300@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Frankie', 'Suthard', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024301, 'stu2024301', 'stu2024301@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Cody', 'Suthard', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024302, 'stu2024302', 'stu2024302@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jase', 'Suthard', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024303, 'stu2024303', 'stu2024303@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Philip', 'Smith-bros', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024304, 'stu2024304', 'stu2024304@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Reshet', 'Moti', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024305, 'stu2024305', 'stu2024305@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'CJ', 'Scout', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024306, 'stu2024306', 'stu2024306@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Caleb', 'Scout', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024307, 'stu2024307', 'stu2024307@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Chris', 'Scout', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024308, 'stu2024308', 'stu2024308@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Misha', 'Hotel', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024309, 'stu2024309', 'stu2024309@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Matty', 'Aussie', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024310, 'stu2024310', 'stu2024310@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Julian', 'Aussie', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024311, 'stu2024311', 'stu2024311@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Mikey', 'Argy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024312, 'stu2024312', 'stu2024312@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Sandro', 'Argy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024313, 'stu2024313', 'stu2024313@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jeremy', 'Kocher', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024314, 'stu2024314', 'stu2024314@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Zach', 'Kocher', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024315, 'stu2024315', 'stu2024315@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Gregory', 'Petek', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024316, 'stu2024316', 'stu2024316@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Thomas', 'Petek', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024317, 'stu2024317', 'stu2024317@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Mark', 'Regowski', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024318, 'stu2024318', 'stu2024318@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Randall', 'Bolinger', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024319, 'stu2024319', 'stu2024319@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Eric', 'Larson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024320, 'stu2024320', 'stu2024320@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Steven', 'Larson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024321, 'stu2024321', 'stu2024321@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Carter', 'Bratton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024322, 'stu2024322', 'stu2024322@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Rotem', 'Mathias', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024323, 'stu2024323', 'stu2024323@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Erick', 'Johnson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024324, 'stu2024324', 'stu2024324@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jacob', 'Wetterling', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024325, 'stu2024325', 'stu2024325@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tom', 'Daley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024326, 'stu2024326', 'stu2024326@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tom', 'Danley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024327, 'stu2024327', 'stu2024327@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brig', 'Miller', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024328, 'stu2024328', 'stu2024328@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Dillon', 'Weisler', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024329, 'stu2024329', 'stu2024329@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jaden', 'Henline', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024330, 'stu2024330', 'stu2024330@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ryan', 'McManus', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024331, 'stu2024331', 'stu2024331@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jacob', 'Miracle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024332, 'stu2024332', 'stu2024332@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Aiden', 'Bryant', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024333, 'stu2024333', 'stu2024333@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Bo', 'Folger', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024334, 'stu2024334', 'stu2024334@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tyler', 'Folger', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024335, 'stu2024335', 'stu2024335@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Lucas', 'Folger', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024336, 'stu2024336', 'stu2024336@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Cort', 'Oregon', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024337, 'stu2024337', 'stu2024337@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Whitewolf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024338, 'stu2024338', 'stu2024338@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ralph', 'Marachio', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024339, 'stu2024339', 'stu2024339@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Devon', 'Sawa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024340, 'stu2024340', 'stu2024340@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Greg', 'Xenon', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024341, 'stu2024341', 'stu2024341@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Robert', 'Irwin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024342, 'stu2024342', 'stu2024342@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Drilon', 'Sadiku', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024343, 'stu2024343', 'stu2024343@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Drin', 'Sadiku', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024344, 'stu2024344', 'stu2024344@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Lucas', 'Wallencheck', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024345, 'stu2024345', 'stu2024345@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brian', 'Clouds', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024346, 'stu2024346', 'stu2024346@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Charlie', 'Bandan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024347, 'stu2024347', 'stu2024347@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tyler', 'VA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024348, 'stu2024348', 'stu2024348@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Grayson', 'DC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024349, 'stu2024349', 'stu2024349@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tanner', 'VA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024350, 'stu2024350', 'stu2024350@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Taylor', 'Starr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024351, 'stu2024351', 'stu2024351@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Hunter', 'Starr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024352, 'stu2024352', 'stu2024352@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Thomas', 'Tex', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024353, 'stu2024353', 'stu2024353@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Robert', 'Burroughs', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024354, 'stu2024354', 'stu2024354@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Anthony', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024355, 'stu2024355', 'stu2024355@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'William', 'Blakeney', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024356, 'stu2024356', 'stu2024356@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Philip', 'Model', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024357, 'stu2024357', 'stu2024357@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Scott', 'Allen', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024358, 'stu2024358', 'stu2024358@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Scott', 'Drummond', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024359, 'stu2024359', 'stu2024359@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ron', 'Drummond', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024360, 'stu2024360', 'stu2024360@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brett', 'Klauss', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024361, 'stu2024361', 'stu2024361@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jason', 'Klauss', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024362, 'stu2024362', 'stu2024362@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Zach', 'Garner', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024363, 'stu2024363', 'stu2024363@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Keegan', 'Garner', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024364, 'stu2024364', 'stu2024364@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Zach', 'Mesinko', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024365, 'stu2024365', 'stu2024365@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Adam', 'Mesinko', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024366, 'stu2024366', 'stu2024366@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Danny', 'Chambers', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024367, 'stu2024367', 'stu2024367@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Danny', 'Honeycutt', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024368, 'stu2024368', 'stu2024368@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Danny', 'Winton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024369, 'stu2024369', 'stu2024369@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Lars', 'Eckburg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024370, 'stu2024370', 'stu2024370@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Duke', 'Gains', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024371, 'stu2024371', 'stu2024371@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jeff', 'Mohler', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024372, 'stu2024372', 'stu2024372@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Andrew', 'Mohler', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024373, 'stu2024373', 'stu2024373@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Nathan', 'Mohler', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024374, 'stu2024374', 'stu2024374@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jacob', 'Mohler', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024375, 'stu2024375', 'stu2024375@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Martin', 'Mohler', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024376, 'stu2024376', 'stu2024376@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Randall', 'Mohler', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024377, 'stu2024377', 'stu2024377@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Jeremy', 'Reeder', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024378, 'stu2024378', 'stu2024378@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ben', 'Hawley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024379, 'stu2024379', 'stu2024379@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Joshua', 'Robb', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024380, 'stu2024380', 'stu2024380@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'JJ', 'Robb', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024381, 'stu2024381', 'stu2024381@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Joey', 'Robb', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024382, 'stu2024382', 'stu2024382@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Ilia', 'Malinin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024383, 'stu2024383', 'stu2024383@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Simon', 'Brown', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024384, 'stu2024384', 'stu2024384@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Tyler', 'Kobel', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024385, 'stu2024385', 'stu2024385@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Mario', 'Roulette', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024386, 'stu2024386', 'stu2024386@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Rick', 'Dancer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024387, 'stu2024387', 'stu2024387@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Gabriel', 'Silva', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024388, 'stu2024388', 'stu2024388@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Joshua', 'Kontour', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024389, 'stu2024389', 'stu2024389@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Evan', 'Kontour', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024390, 'stu2024390', 'stu2024390@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Joshua', 'Dundr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024391, 'stu2024391', 'stu2024391@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Merk', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024392, 'stu2024392', 'stu2024392@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Charles', 'Ridley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024393, 'stu2024393', 'stu2024393@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Johnathan', 'Ridley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024394, 'stu2024394', 'stu2024394@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Paul', 'Ridley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024395, 'stu2024395', 'stu2024395@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Michael', 'Slayton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024396, 'stu2024396', 'stu2024396@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Christian', 'Slayton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024397, 'stu2024397', 'stu2024397@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Levi', 'McCoaughey', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024398, 'stu2024398', 'stu2024398@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Livingston', 'McConaughey', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024399, 'stu2024399', 'stu2024399@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'William', 'Vance', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024400, 'stu2024400', 'stu2024400@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Andrew', 'Miller', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024401, 'stu2024401', 'stu2024401@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Bradley', 'Little', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024402, 'stu2024402', 'stu2024402@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Curtis', 'Post', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024403, 'stu2024403', 'stu2024403@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Scout', 'Beachovich', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024404, 'stu2024404', 'stu2024404@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Deven', 'Jackson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024405, 'stu2024405', 'stu2024405@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Casey', 'Likes', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024406, 'stu2024406', 'stu2024406@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Eitan', 'Yahalomi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024407, 'stu2024407', 'stu2024407@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Rizkallah', 'Saliba', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024408, 'stu2024408', 'stu2024408@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Austin', 'Saliba', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024409, 'stu2024409', 'stu2024409@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Saliba', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024410, 'stu2024410', 'stu2024410@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Neil', 'Rutter', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024411, 'stu2024411', 'stu2024411@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'John', 'Skyview', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024412, 'stu2024412', 'stu2024412@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Timothy', 'Bair', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024413, 'stu2024413', 'stu2024413@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'David', 'Bair', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024414, 'stu2024414', 'stu2024414@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Michael', 'Weber', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024415, 'stu2024415', 'stu2024415@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Dean', 'Howard', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024416, 'stu2024416', 'stu2024416@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Brandon', 'DelToro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024417, 'stu2024417', 'stu2024417@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Aaron', 'Favri', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024418, 'stu2024418', 'stu2024418@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Carson', 'Glasier', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024419, 'stu2024419', 'stu2024419@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Connor', 'Glasier', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024420, 'stu2024420', 'stu2024420@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Marty', 'Sampson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2024421, 'stu2024421', 'stu2024421@school.edu', NULL, 19, NULL, NULL, NULL, NULL, 'Mason', 'Sampson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `alembic_version`
+--
+ALTER TABLE `alembic_version`
+  ADD PRIMARY KEY (`version_num`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `phone_number` (`phone_number`),
+  ADD KEY `role_id` (`role_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2024422;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
