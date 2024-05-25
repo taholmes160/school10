@@ -9,11 +9,23 @@ from .forms import LoginForm
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    # Your login view logic here...
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+        if user and check_password_hash(user.password_hash, password):
+            login_user(user)
+            flash('Logged in successfully.')
+            return redirect(url_for('main.index'))  # Redirect to the main page after login
+        else:
+            flash('Invalid username or password.')
+    return render_template('login.html')  # Your login template
+
 
 @auth.route('/logout')
 @login_required
 def logout():
-    # Your logout view logic here...
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 # ... other authentication-related routes ...
