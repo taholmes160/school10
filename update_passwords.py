@@ -1,5 +1,6 @@
 from app import create_app
 from models import User, db
+from werkzeug.security import generate_password_hash
 
 # Create the Flask app and push an application context
 app = create_app()
@@ -9,7 +10,8 @@ app.app_context().push()
 def hash_passwords():
     users = User.query.all()
     for user in users:
-        user.set_password(user.password)
+        hashed_password = generate_password_hash('school@1234', method='scrypt', salt_length=16)
+        user.password_hash = hashed_password
         db.session.add(user)
     db.session.commit()
 
