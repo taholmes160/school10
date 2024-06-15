@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Home Page</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
     <h1>Welcome to the Home Page</h1>
-    <a href="{{ url_for('auth.login') }}">Login</a>
-</body>
-</html>
+    <p>This is the landing page of your application.</p>
+    <p>If you're not logged in, you can <a href="{{ url_for('auth.login') }}">login here</a>.</p>
+{% endblock %}
+
+

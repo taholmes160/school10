@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Users by Role</h1>
+  {% for role, users in users_by_role.items() %}
+    <h2>{{ role }}</h2>
+    <ul>
+      {% for user in users %}
+        <li>{{ user.username }}</li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+{% endblock %}

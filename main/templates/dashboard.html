@@ -1,0 +1,26 @@
+<!-- templates/dashboard.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Welcome, {{ user.username }}!</h1>
+    <p>Your role is: {{ user.role }}</p>
+    <div class="card-deck">
+      {% if user.role == 'admin' %}
+        <div class="card">
+          <div class="card-header">Admin Panel</div>
+          <div class="card-body">
+            <a href="/admin" class="btn btn-primary">Go to Admin Panel</a>
+          </div>
+        </div>
+      {% endif %}
+      <div class="card">
+        <div class="card-header">User Dashboard</div>
+        <div class="card-body">
+          <a href="/profile" class="btn btn-primary">View Profile</a>
+        </div>
+      </div>
+      <!-- Add more cards based on roles -->
+    </div>
+  </div>
+{% endblock %}
