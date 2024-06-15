@@ -1,14 +1,13 @@
-# main/routes.py
-
-from flask import render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for
 from flask_login import current_user
-from . import main  # Import the main blueprint or app instance
+
+main = Blueprint('main', __name__)
 
 @main.route('/')
 @main.route('/home')
 def home():
     if current_user.is_authenticated:
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('main.dashboard'))
     return render_template('home.html')
 
 @main.route('/dashboard')

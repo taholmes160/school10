@@ -16,7 +16,7 @@ def login():
         if user and check_password_hash(user.password_hash, password):
             login_user(user)
             flash('Logged in successfully.')
-            return redirect(url_for('main.index'))  # Redirect to the main page after login
+            return redirect(url_for('main.home'))  # Redirect to the main page after login
         else:
             flash('Invalid username or password.')
     return render_template('login.html')  # Your login template

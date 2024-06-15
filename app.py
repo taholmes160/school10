@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from auth import auth as auth_blueprint  # Import the auth Blueprint
 from users.users_blueprint import users_blueprint
-from main import main as main_blueprint  # Import the main Blueprint
+from main.routes import main as main_blueprint  # Import the main Blueprint
 from werkzeug.security import generate_password_hash
 from models import db, User
 
@@ -29,7 +29,6 @@ def create_app():
     app.register_blueprint(main_blueprint)  # Register the main Blueprint
 
     @app.route('/')
-    @app.route('/home')
     def home():
         if current_user.is_authenticated:
             return redirect(url_for('dashboard'))  # Redirect authenticated users to the dashboard
