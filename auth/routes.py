@@ -1,31 +1,35 @@
-# yourapplication/auth/routes.py
+from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask_login import login_user, logout_user, login_required, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
+from models import db, User
 
-from flask import render_template, redirect, url_for, flash, request
-from flask_login import login_user, logout_user, login_required
-from werkzeug.security import check_password_hash
-from auth import auth
-from models import User
-from auth.forms import LoginForm
+auth = Blueprint('auth', __name__, template_folder='templates')
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.dashboard'))
+
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        print(f"Trying to log in with username: {username}")  # Debugging statement
+        
         user = User.query.filter_by(username=username).first()
-        if user and check_password_hash(user.password_hash, password):
-            login_user(user)
-            flash('Logged in successfully.')
-            return redirect(url_for('main.home'))  # Redirect to the main page after login
+
+        if user:
+            print(f"User found: {user.username}")  # Debugging statement
         else:
-            flash('Invalid username or password.')
-    return render_template('login.html')  # Your login template
+            print("User not found")  # Debugging statement
 
+        if user and user.check_password(password):
+            print("Password matches")  # Debugging statement
+            login_user(user)
+            next_page = request.args.get('next')
+            return redirect(next_page or url_for('main.dashboard'))
+        else:
+            print("Login failed")  # Debugging statement
+            flash('Login failed. Check your credentials and try again.')
 
-@auth.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('auth.login'))
-
-# ... other authentication-related routes ...
+    return render_template('login.html')

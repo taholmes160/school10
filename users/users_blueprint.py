@@ -1,25 +1,10 @@
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_required, current_user
-from models import User, Role
+from models import db, User
 
-# Create a Blueprint for user-related routes
-users_blueprint = Blueprint('users', __name__, template_folder='templates')
+users_blueprint = Blueprint('users', __name__)
 
-# Define a route to list all users by role
-@users_blueprint.route('/users-by-role')
+@users_blueprint.route('/profile')
 @login_required
-def users_by_role():
-    # Only users with the 'admin' role and above can access this view
-    allowed_roles = ['admin', 'principal', 'vice principal']
-    if current_user.role.name not in allowed_roles:
-        abort(403)  # Return a 403 Forbidden error if the user does not have an allowed role
-
-    # Query all roles and their associated users
-    roles = Role.query.all()
-    users_by_role = {}
-    for role in roles:
-        users = User.query.filter_by(role_id=role.id).all()
-        users_by_role[role.name] = users
-
-    # Render the users-by-role view
-    return render_template('users-by-role.html', users_by_role=users_by_role)
+def profile():
+    return render_template('profile.html', user=current_user)
